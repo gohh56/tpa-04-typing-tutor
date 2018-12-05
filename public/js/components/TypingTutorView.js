@@ -52,6 +52,7 @@ class TypingTutorView {
     spanEl.innerText = typedChar;
     spanEl.className = (typedChar === targetChar) ? 'key-correct' : 'key-incorrect';
     this.learnerKeystrokesEl.appendChild(spanEl);
+    return (typedChar === targetChar) ? 1 : 0;
   }
 }
 
