@@ -6,6 +6,7 @@ class TypingTutorGame {
     this.isRoundInProgress = false;
     this.currentStrokeCount = -1;
     this.targetText = null;
+    this.correctScore = 0;
   }
 
   init() {
@@ -18,6 +19,7 @@ class TypingTutorGame {
   startRound() {
     this.isRoundInProgress = true;
     this.currentStrokeCount = -1;
+    this.correctScore = 0;
     this.initTargetText();
   }
 
@@ -26,6 +28,11 @@ class TypingTutorGame {
     this.currentStrokeCount += 1;
     const targetChar = this.targetText[this.currentStrokeCount];
     this.view.renderKeystroke(key, targetChar);
+    if (key === targetChar) this.correctScore += 1;
+    if (this.targetText.length - 1 === this.currentStrokeCount) {
+      this.isRoundInProgress = false;
+      console.log(`正解率は${((this.correctScore / this.targetText.length) * 100).toFixed()}％でした。`);
+    }
   }
 
   initTargetText() {
